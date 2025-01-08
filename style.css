@@ -1,0 +1,545 @@
+/* Estilos Globais */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	transition: all 0.3s ease;
+}
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f4f4f9;
+	color: #333;
+	line-height: 1.6;
+}
+
+/* Efeito de transição suave nos títulos */
+h1,
+h2,
+h3 {
+	font-family: 'Roboto', sans-serif;
+	color: #333;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 600;
+	opacity: 0;
+	transform: translateY(20px);
+	animation: fadeUp 1s forwards;
+	transition: all 0.3s ease;
+}
+
+h1:hover,
+h2:hover,
+h3:hover {
+	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+	color: #3498db;
+}
+
+h1 {
+	font-size: 3rem;
+	margin-bottom: 20px;
+}
+
+h2 {
+	font-size: 2.5rem;
+	margin-bottom: 15px;
+}
+
+h3 {
+	font-size: 2rem;
+	margin-bottom: 10px;
+}
+
+p {
+	font-size: 1.2rem;
+	color: #555;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+/* Efeito de animação para os títulos */
+@keyframes fadeUp {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Cabeçalho fixo e navegação */
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	padding: 20px 40px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	z-index: 100;
+	transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+header.scrolled {
+	background-color: #2980b9;
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+	transform: scale(0.95);
+	/* Efeito de encolher no scroll */
+}
+
+
+/* Menu */
+#menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+#menu .logo a {
+	color: #2c3e50;
+	font-size: 2rem;
+	font-weight: 700;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+#menu .logo a:hover {
+	color: #3498db;
+}
+
+/* Itens do Menu */
+#menu-items {
+	display: flex;
+	gap: 30px;
+}
+
+#menu-items ul {
+	list-style: none;
+	display: flex;
+	gap: 30px;
+}
+
+#menu-items ul li a {
+	color: #333;
+	font-size: 1rem;
+	font-weight: 500;
+	text-decoration: none;
+	padding: 12px 20px;
+	transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+	border-radius: 30px;
+	opacity: 0.8;
+}
+
+#menu-items ul li a:hover {
+	background-color: #3498db;
+	color: #fff;
+	transform: scale(1.1);
+	opacity: 1;
+}
+
+/* Menu Responsivo */
+.menu-hamburguer {
+	display: none;
+	cursor: pointer;
+	font-size: 2rem;
+	color: #333;
+	transition: transform 0.3s ease;
+}
+
+.menu-hamburguer.open {
+	transform: rotate(90deg);
+	/* Gira o ícone do menu ao abrir */
+}
+
+/* Menu Responsivo */
+@media (max-width: 768px) {
+	#menu-items {
+		display: none;
+		/* Esconde os itens do menu em telas menores */
+		flex-direction: column;
+		/* Itens empilhados em coluna */
+		gap: 20px;
+		text-align: center;
+		background-color: #fff;
+		position: absolute;
+		top: 80px;
+		right: 0;
+		left: 0;
+		padding: 10px;
+		z-index: 999;
+	}
+
+	.menu-hamburguer {
+		display: block;
+		/* Exibe o ícone do hambúrguer em telas menores */
+	}
+
+	#menu-items.active {
+		display: flex;
+		/* Exibe o menu quando a classe "active" for aplicada */
+	}
+
+	#menu-items ul {
+		display: block;
+		/* Exibe os itens de menu como lista em telas pequenas */
+	}
+
+	#menu-items ul li a {
+		padding: 15px;
+		font-size: 1.2rem;
+	}
+}
+
+
+/* Seções */
+section {
+	padding: 120px 40px 40px;
+	margin-top: 80px;
+	position: relative;
+	overflow: hidden;
+	opacity: 0;
+	transform: translateY(50px);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+section.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Efeito de desvanecer nos elementos das seções */
+section:nth-child(even) {
+	background-color: #e0e0e0;
+}
+
+section:nth-child(odd) {
+	background-color: #ffffff;
+}
+
+section {
+	position: relative;
+	will-change: transform;
+}
+
+/* Animação para imagens de intro e projetos */
+.intro-text {
+	margin-bottom: 30px;
+}
+
+.intro-img {
+	display: flex;
+	justify-content: center;
+	opacity: 0;
+	animation: fadeIn 1s forwards;
+	transition: opacity 0.3s ease;
+	/* A transição pode ser importante para garantir que a imagem apareça corretamente */
+}
+
+.intro-img img {
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 5px solid #3498db;
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.intro-img img:hover {
+	transform: scale(1.05);
+	/* Aumento leve */
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Animação para os títulos da intro */
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Animação para os projetos */
+.projeto {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 30px;
+	margin-bottom: 40px;
+	text-align: center;
+	opacity: 0;
+	animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.projeto-item {
+	display: flex;
+	align-items: center;
+	/* Alinha logo e texto ao centro verticalmente */
+	gap: 20px;
+	/* Espaço entre o logo e a descrição */
+	padding: 10px;
+	border: 2px solid #3498db;
+	/* Esta borda azul será removida */
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
+	width: 100%;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-item:hover {
+	transform: scale(1.05);
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Alteração nas imagens dos logos dentro dos projetos */
+.projeto-item .logo {
+	width: 120px;
+	/* Aumentando a largura da logo */
+	height: 120px;
+	/* Aumentando a altura da logo */
+	object-fit: contain;
+	/* Garante que a imagem seja redimensionada para caber sem distorcer */
+	transition: transform 0.4s ease;
+}
+
+.projeto-item .logo:hover {
+	transform: rotate(360deg);
+	/* Roda a logo */
+}
+
+.projeto-item .info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5px;
+}
+
+.projeto-item .info h3 {
+	font-size: 1.2rem;
+	color: #333;
+	font-weight: bold;
+}
+
+.projeto-item .info p {
+	font-size: 1rem;
+	color: #555;
+	margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+	.projeto-item {
+		max-width: 400px;
+		/* Reduz o tamanho do item em telas menores */
+	}
+
+	.projeto-item .logo {
+		width: 80px;
+		/* Ajusta a largura em telas menores */
+		height: 80px;
+		/* Ajusta a altura em telas menores */
+	}
+}
+
+@media (max-width: 768px) {
+	.projeto-item {
+		max-width: 350px;
+		/* Reduz mais o tamanho em telas menores */
+	}
+
+	.projeto-item .logo {
+		width: 70px;
+		/* Ajusta a largura em telas ainda menores */
+		height: 70px;
+		/* Ajusta a altura em telas menores */
+	}
+}
+
+@media (max-width: 480px) {
+	.projeto-item {
+		max-width: 300px;
+		/* Reduz ainda mais para telas de celulares */
+	}
+
+	.projeto-item .logo {
+		width: 60px;
+		/* Ajusta a largura em telas muito pequenas */
+		height: 60px;
+		/* Ajusta a altura em telas muito pequenas */
+	}
+}
+
+.projeto img {
+	max-width: 15%;
+	/* A imagem não ultrapassa a largura do contêiner */
+	height: auto;
+	/* A altura será proporcional à largura */
+	object-fit: contain;
+	/* A imagem vai ser redimensionada para caber no retângulo sem distorção */
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+	border: 4px solid #3498db;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto img:hover {
+	transform: scale(1.1);
+	box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Página de Contato */
+.contact-page {
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
+    padding: 0 20px; /* Adiciona um pequeno espaçamento nas laterais */
+}
+
+/* Formulário de Contato */
+.contact-form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Limita o tamanho máximo do formulário */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Alinha os campos em uma coluna */
+    justify-content: center; /* Garante que os campos fiquem centralizados verticalmente */
+    align-items: center; /* Centraliza os campos horizontalmente dentro do formulário */
+    margin: 0 auto; /* Garante que o formulário tenha margem automática nas laterais, centralizando-o */
+}
+
+/* Campos de entrada (input, textarea e button) */
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+    width: 100%; /* Faz todos os elementos ocuparem a largura total do formulário */
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem; /* Ajusta o tamanho da fonte */
+}
+
+/* Caixa de mensagem (textarea) */
+.contact-form textarea {
+    min-height: 150px; /* Altura mínima da caixa de mensagem */
+    resize: none; /* Impede que o usuário redimensione a caixa de texto */
+    height: 150px; /* Altura fixa da área de mensagem */
+}
+
+/* Botão de envio */
+.contact-form button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    margin-bottom: 0; /* Remove a margem inferior do botão */
+    height: auto; /* Faz o botão se ajustar ao conteúdo do padding */
+}
+
+.contact-form button:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+/* Estilos para o Rodapé */
+footer {
+	background-color: #fff;
+	/* Cor de fundo branca */
+	color: #000;
+	/* Cor do texto preto */
+	text-align: center;
+	/* Alinhamento central para o texto */
+	padding: 30px 0;
+	/* Espaçamento interno */
+}
+
+footer p {
+	margin-bottom: 20px;
+	/* Espaçamento entre o texto e os ícones das redes sociais */
+	font-size: 16px;
+	/* Tamanho do texto */
+}
+
+footer ul {
+	list-style-type: none;
+	/* Remove os pontos das listas */
+	padding: 0;
+	/* Remove o padding */
+	margin: 0;
+	/* Remove a margem */
+	display: flex;
+	/* Exibe os itens da lista em linha */
+	justify-content: center;
+	/* Alinha os itens ao centro */
+}
+
+footer ul li {
+	margin: 0 15px;
+	/* Espaçamento entre os itens da lista */
+}
+
+footer ul li a {
+	text-decoration: none;
+	/* Remove o sublinhado dos links */
+	color: #000;
+	/* Cor preta para os ícones */
+	font-size: 24px;
+	/* Tamanho dos ícones */
+	transition: color 0.3s ease;
+	/* Transição suave para a cor */
+}
+
+footer ul li a:hover {
+	color: #2980b9;
+	/* Cor de destaque ao passar o mouse sobre os ícones (opcional) */
+}
